@@ -84,7 +84,7 @@ class UserController {
     const verificationToken = req.params.token;
     jwt.verify(
       verificationToken,
-      "verify_email",
+      "verify_secret",
       async(err: VerifyErrors | null, decoded: unknown) => {
         if(err) {
           return res.status(403).json(err);

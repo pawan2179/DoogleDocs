@@ -11,7 +11,9 @@ if(
   process.env.PASSWORD === undefined ||
   process.env.DB_HOST === undefined ||
   process.env.DB_PORT === undefined ||
-  process.env.DATABASE === undefined
+  process.env.DATABASE === undefined ||
+  process.env.HOST_EMAIL === undefined ||
+  process.env.HOST_APP_PASSWORD === undefined
 ) {
   throw new Error("Environment variables missing.");
 }
@@ -25,7 +27,9 @@ const env = {
   PASSWORD: process.env.PASSWORD,
   DB_HOST: process.env.DB_HOST,
   DB_PORT: process.env.DB_PORT,
-  DATABASE: process.env.DATABASE
+  DATABASE: process.env.DATABASE,
+  HOST_EMAIL: process.env.HOST_EMAIL,
+  HOST_APP_PASSWORD: process.env.HOST_APP_PASSWORD
 };
 console.log("Env file: ", env);
 export default env;

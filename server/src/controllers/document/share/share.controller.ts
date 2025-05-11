@@ -5,6 +5,9 @@ import { Document } from "../../../db/models/document.model";
 import { User } from "../../../db/models/user.model";
 import { DocuemntUser } from "../../../db/models/document-user.model";
 import { mailService } from "../../../services/mail.service";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 class ShareController {
   public create = catchAsync(async(req: Request, res: Response) => {
@@ -38,7 +41,7 @@ class ShareController {
     });
 
     const mail = {
-      from: 'pawansingh4418@gmail.com',
+      from: process.env.HOST_EMAIL,
       to: sharedUser.email,
       subject: `${req.user.email} shared a document with you.`,
       text: `Click the following link to view and edit the document: http://localhost:3000/document/${id}`

@@ -3,6 +3,9 @@ import { genSalt, hash, compare} from 'bcrypt'
 import jwt from "jsonwebtoken";
 import { RefreshToken } from "../db/models/refreshToken.model";
 import { mailService } from "./mail.service";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 class UserService {
   public findUserByEmail = async(email:string) : Promise<User | null> => {
@@ -26,7 +29,7 @@ class UserService {
 
   private sendVerificationEmail = async(user: User) => {
     const mail = {
-      from: "pawansingh4418@gmail.com",
+      from: process.env.HOST_EMAIL,
       to: user.email,
       subject: 'Welcome to Doogle Docs.',
       text:  `click the following link to verify your email : http://localhost:3000/user/verify-email/${user.verificationToken}`
@@ -36,7 +39,7 @@ class UserService {
 
   public sendPasswordResetEmail = async(user: User) => {
     const mail = {
-      from: 'pawansingh4418@gmail.com',
+      from: process.env.HOST_EMAIL,
       to: user.email,
       subject: 'Reset your password!',
       text: `http://localhost:3000/user/reset-email/${user.passwodResetToken}`

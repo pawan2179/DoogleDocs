@@ -1,13 +1,16 @@
 import { createTransport } from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const transporter = createTransport({
-  port: 465,
+  port: 587,
   host: 'smtp.gmail.com',
+  secure: false,
   auth: {
-    user: 'pawansingh4418@gmail.com',
-    pass: 'testsmtppassword'
+    user: process.env.HOST_EMAIL,
+    pass: process.env.HOST_APP_PASSWORD
   },
-  secure: true
 });
 
 export default transporter;

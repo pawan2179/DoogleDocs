@@ -39,24 +39,30 @@ class DocumentController {
   })
 
   public update = catchAsync(async(req: Request, res: Response) => {
+    // console.log("inside update controller");
     const err = validationResult(req);
-    if(err) {
-      return res.status(400).json(err);
-    }
+    // if(err) {
+    //   console.log("validation failed : ", err);
+    //   return res.status(400).json(err);
+    // }
     if(!req.user) {
+      // console.log("no user found");
       return res.sendStatus(401);
     }
     const {id} = req.params;
     const {title, content, isPublic} = req.body;
     
     const document = await documentService.findDocumentById(parseInt(id), parseInt(req.user.id));
+    // console.log("searched doc: ", document);
     if(document === null || document === undefined) return res.sendStatus(404);
 
     if(title !== undefined && title !== null) document.title = title;
     if(content !== undefined && content !== null) document.content = content;
     if(isPublic !== undefined && isPublic !== null) document.isPublic = isPublic;
 
+    // console.log("updating doc : ", document);
     await document.save();
+    // console.log("docuemnt saved");
     return res.sendStatus(200);
   });
 

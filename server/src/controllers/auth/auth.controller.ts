@@ -32,6 +32,10 @@ class AuthController {
 
   public refreshToken = catchAsync(async(req: Request, res: Response) => {
     const err = validationResult(req);
+
+    console.log("In refresh token controller");
+    console.log("validation err: ", err);
+
     if(!err.isEmpty) {
       return res.status(400).json(err);
     }
@@ -43,7 +47,7 @@ class AuthController {
     }
     jwt.verify(
       refreshToken,
-      "refresh-token",
+      "refresh_token",
       async(error: VerifyErrors | null, decoded: unknown) => {
         if(error) return res.sendStatus(400);
         try {
