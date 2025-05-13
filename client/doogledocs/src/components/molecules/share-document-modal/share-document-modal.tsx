@@ -42,6 +42,7 @@ const ShareDocumentModal = () => {
       } as DocumentInterface);
       setEmail('');
     } catch (err) {
+      console.log(err);
       error(`Unable to share this document with ${email}. Please try again`);
     } finally {
       setLoading(false);

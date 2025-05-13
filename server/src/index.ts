@@ -7,7 +7,7 @@ import cors from 'cors';
 import errorHandler from "./middlewares/errorHandler";
 
 const result = dotenv.config();
-console.log("Dotenv load result: ", result);
+// console.log("Dotenv load result: ", result);
 
 console.log(process.env.DATABASE_URL);
 
@@ -29,10 +29,12 @@ db.sequelize.authenticate()
 
 db.sequelize.sync();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express server");
-});
+// app.get("/", (req: Request, res: Response) => {
+//   res.send("Express server");
+// });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-})
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// })
+
+export default app;

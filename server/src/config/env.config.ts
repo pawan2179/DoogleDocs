@@ -31,5 +31,5 @@ const env = {
   HOST_EMAIL: process.env.HOST_EMAIL,
   HOST_APP_PASSWORD: process.env.HOST_APP_PASSWORD
 };
-console.log("Env file: ", env);
+// console.log("Env file: ", env);
 export default env;

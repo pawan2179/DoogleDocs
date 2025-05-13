@@ -9,6 +9,7 @@ import AuthRoute from './components/molecules/auth-route'
 import Create from './pages/documents/create'
 import Document from './pages/documents'
 import { DocumentProvider } from './contexts/documentContext'
+import { EditorProvider } from './contexts/editorContext'
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
               <Route path='/document/:id' element={
                 <AuthRoute element={
                   <DocumentProvider>
-                    <Document />
+                    <EditorProvider>
+                      <Document />
+                    </EditorProvider>
                   </DocumentProvider>
                 }>
                 </AuthRoute>} />

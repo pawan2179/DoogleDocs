@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import catchAsync from "../../../middlewares/catch-async";
 import { validationResult } from "express-validator";
 import { Document } from "../../../db/models/document.model";
@@ -11,17 +11,20 @@ dotenv.config();
 
 class ShareController {
   public create = catchAsync(async(req: Request, res: Response) => {
-    const err = validationResult(req);
-    if(err) {
-      return res.status(400).json(err);
-    }
+    console.log("in share controller");
+    // const err = validationResult(req);
+    // if(err) {
+    //   return res.status(400).json(err);
+    // }
 
     const {id} = req.params;
     const document = await Document.findByPk(id);
     if(!document) {
+      console.log("document not found");
       return res.sendStatus(403);
     }
     if(!req.user?.id || document.userId !== parseInt(req.user?.id)) {
+      console.log('user not found');
       return res.sendStatus(400);
     }
 
@@ -32,6 +35,7 @@ class ShareController {
       }
     });
     if(!sharedUser) {
+      console.log('shared user not found');
       return res.sendStatus(400);
     }
     const documentUser = await DocuemntUser.create({
