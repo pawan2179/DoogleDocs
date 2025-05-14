@@ -1,0 +1,22 @@
+{
+  "name": "googledocs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install --prefix server && npm install --prefix client/doogledocs && npm run build --prefix client/doogledocs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawan2179/DoogleDocs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pawan2179/DoogleDocs/issues"
+  },
+  "homepage": "https://github.com/pawan2179/DoogleDocs#readme"
+}

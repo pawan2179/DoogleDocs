@@ -4,6 +4,11 @@ import {validationResult} from 'express-validator';
 import { userService } from "../../services/user.service";
 import { emailNotVerified, userNotFound } from "../../responses";
 import jwt, { VerifyErrors } from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const REFRESH_SECRET = process.env.REFRESH_SECRET || '';
 
 class AuthController {
   public login = catchAsync(async(req: Request, res: Response) => {
@@ -47,7 +52,7 @@ class AuthController {
     }
     jwt.verify(
       refreshToken,
-      "refresh_token",
+      REFRESH_SECRET,
       async(error: VerifyErrors | null, decoded: unknown) => {
         if(error) return res.sendStatus(400);
         try {

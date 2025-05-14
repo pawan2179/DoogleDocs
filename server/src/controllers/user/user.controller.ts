@@ -4,6 +4,11 @@ import { validationResult } from "express-validator";
 import { userService } from "../../services/user.service";
 import { resetPassword } from "../../responses";
 import jwt, { VerifyErrors } from 'jsonwebtoken'
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const VERIFY_SECRET = process.env.VERIFY_SECRET || "";
 
 class UserController {
   public register = catchAsync(async(req:Request, res: Response) => {
@@ -84,7 +89,7 @@ class UserController {
     const verificationToken = req.params.token;
     jwt.verify(
       verificationToken,
-      "verify_secret",
+      VERIFY_SECRET,
       async(err: VerifyErrors | null, decoded: unknown) => {
         if(err) {
           return res.status(403).json(err);

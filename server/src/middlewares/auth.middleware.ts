@@ -3,6 +3,10 @@ import jwt, { VerifyErrors } from 'jsonwebtoken';
 import RoleEnum from "../types/enums/role-enum";
 import { UserRole } from "../db/models/user-role.model";
 import { Role } from "../db/models/role.model";
+import dotenv from 'dotenv'
+
+dotenv.config();
+const ACCESS_SECRET = process.env.ACCESS_SECRET || '';
 
 const authenticate : RequestHandler = (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -14,7 +18,7 @@ const authenticate : RequestHandler = (req, res, next) => {
   }
   jwt.verify(
     token,
-    "access_token",
+    ACCESS_SECRET,
     (err: VerifyErrors | null, decoded: unknown) => {
       if (err) {
         res.sendStatus(403);

@@ -7,6 +7,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const ACCESS_SECRET = process.env.ACCESS_SECRET || "";
+const REFRESH_SECRET = process.env.REFRESH_SECRET || "";
+const VERIFY_SECRET = process.env.VERIFY_SECRET || "";
+
 class UserService {
   public findUserByEmail = async(email:string) : Promise<User | null> => {
     const user = await User.findOne({where: {email}})
@@ -16,7 +20,7 @@ class UserService {
   public createUser = async(email: string, password: string) => {
     const salt = await genSalt();
     const hashedPassword = await hash(password, salt);
-    const verificationToken = jwt.sign({email}, "verify_secret"); //TODO :: get from env
+    const verificationToken = jwt.sign({email}, VERIFY_SECRET);
     const user = await User.create({
       email: email,
       password: hashedPassword,
@@ -32,7 +36,7 @@ class UserService {
       from: process.env.HOST_EMAIL,
       to: user.email,
       subject: 'Welcome to Doogle Docs.',
-      text:  `click the following link to verify your email : http://localhost:3000/user/verify-email/${user.verificationToken}`
+      text:  `click the following link to verify your email : http://localhost:5173/user/verify-email/${user.verificationToken}`
     }
     await mailService.sendMail(mail);
   };
@@ -42,7 +46,7 @@ class UserService {
       from: process.env.HOST_EMAIL,
       to: user.email,
       subject: 'Reset your password!',
-      text: `http://localhost:3000/user/reset-email/${user.passwodResetToken}`
+      text: `http://localhost:5173/user/reset-email/${user.passwodResetToken}`
     };
     mailService.sendMail(mail);
   }
@@ -67,10 +71,10 @@ class UserService {
 
   public generateAuthResponse = async(user: RequestUser | User) : Promise<TokenPair> => {
     const requestUser = await this.getRequestUser(user);
-    const accessToken = jwt.sign(requestUser, "access_token", {
+    const accessToken = jwt.sign(requestUser, ACCESS_SECRET, {
       expiresIn: '24h'
     })
-    const refreshToken = jwt.sign(requestUser, "refresh_token", {
+    const refreshToken = jwt.sign(requestUser, REFRESH_SECRET, {
       expiresIn: '24h'
     })
 

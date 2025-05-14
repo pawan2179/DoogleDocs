@@ -9,6 +9,7 @@ import SocketEvent from './types/enums/socket-events-enum';
 dotenv.config();
 
 const server = http.createServer(app);
+const ACCESS_SECRET: string = process.env.ACCESS_SECRET || '';
 
 const io = new Server(server, {
   cors: {
@@ -29,7 +30,7 @@ io.on("connection", (socket) => {
   else {
     jwt.verify(
       accessToken,
-      "access_token",
+      ACCESS_SECRET,
       (err: VerifyErrors | null, decoded: unknown) => {
         const { id, email } = decoded as RequestUser;
         (socket as any).username = email;

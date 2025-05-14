@@ -48,7 +48,7 @@ class ShareController {
       from: process.env.HOST_EMAIL,
       to: sharedUser.email,
       subject: `${req.user.email} shared a document with you.`,
-      text: `Click the following link to view and edit the document: http://localhost:3000/document/${id}`
+      text: `Click the following link to view and edit the document: http://localhost:5173/document/${id}`
     };
     //call mail service to send email
     await mailService.sendMail(mail);
