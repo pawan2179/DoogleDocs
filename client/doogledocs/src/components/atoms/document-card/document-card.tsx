@@ -21,7 +21,7 @@ const DocumentCard = ({document, setDocument}: DocumentCardProps) => {
 
   const skeleton = (
     <>
-      {Array.from({length: 18}, (x,i) => i).map((i) => {
+      {Array.from({length: 18}, (_,i) => i).map((i) => {
         return (
           <div key={i} style={{width: `${Math.floor(Math.random() * 100)}%`}} className="h-1 bg-gray-200"></div>
         )

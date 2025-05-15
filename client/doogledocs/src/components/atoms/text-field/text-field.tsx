@@ -27,7 +27,6 @@ const TextField = ({
   placeholder,
   errors=[],
   mask,
-  icon,
   color='primary'
 }: TextFieldProps) => {
   const textFieldRef = useRef<any>(null);

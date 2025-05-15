@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { ToastContext } from '../../../contexts/toast-context'
 import useWindowSize from '../../../hooks/useWindowSize';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';

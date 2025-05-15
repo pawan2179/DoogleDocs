@@ -1,4 +1,4 @@
-import React, { useContext, useState, type HTMLElementType } from 'react'
+import React, { useContext, useState } from 'react'
 import useWindowSize from '../../hooks/useWindowSize'
 import TextField from '../../components/atoms/text-field';
 import { FaSpinner } from 'react-icons/fa';

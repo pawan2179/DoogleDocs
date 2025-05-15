@@ -10,7 +10,7 @@ import ShareDocumentModal from "../share-document-modal";
 
 const DocumentMenuBar = () => {
   const {accessToken, userId} = useAuth();
-  const {document, saving, setDocumentTitle, setDocument, setSaving, setErrors} = useContext(DocumentContext);
+  const {document, saving, setDocumentTitle, setSaving, setErrors} = useContext(DocumentContext);
 
   const handleTitleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const title = (event.target as HTMLInputElement).value;

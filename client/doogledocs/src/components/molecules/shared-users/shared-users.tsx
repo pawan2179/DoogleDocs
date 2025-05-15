@@ -5,7 +5,6 @@ import useRandomBackground from "../../../hooks/useRandomBackground";
 import useAuth from "../../../hooks/useAuth";
 import { ToastContext } from "../../../contexts/toast-context";
 import { DocumentContext } from "../../../contexts/documentContext";
-import DocumentService from "../../../services/document-service";
 import DocumentUserService from "../../../services/document-user-service";
 
 interface SharedUserProps {

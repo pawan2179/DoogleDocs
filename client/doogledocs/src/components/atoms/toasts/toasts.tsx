@@ -1,4 +1,4 @@
-import React, { MouseEvent, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 import ToastInterface from '../../../types/interfaces/toast'
 import { ToastContext } from '../../../contexts/toast-context'
 

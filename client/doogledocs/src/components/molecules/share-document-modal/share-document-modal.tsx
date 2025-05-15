@@ -4,7 +4,6 @@ import useAuth from "../../../hooks/useAuth";
 import { ToastContext } from "../../../contexts/toast-context";
 import validator from 'validator';
 import PermissionEnum from "../../../types/enums/permission-enums";
-import DocumentService from "../../../services/document-service";
 import DocumentUserService from "../../../services/document-user-service";
 import DocumentUser from "../../../types/interfaces/document-user";
 import DocumentInterface from "../../../types/interfaces/document";
