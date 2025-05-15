@@ -10,6 +10,7 @@ dotenv.config();
 const ACCESS_SECRET = process.env.ACCESS_SECRET || "";
 const REFRESH_SECRET = process.env.REFRESH_SECRET || "";
 const VERIFY_SECRET = process.env.VERIFY_SECRET || "";
+const BASE_URL = process.env.HOST || "";
 
 class UserService {
   public findUserByEmail = async(email:string) : Promise<User | null> => {
@@ -36,7 +37,7 @@ class UserService {
       from: process.env.HOST_EMAIL,
       to: user.email,
       subject: 'Welcome to Doogle Docs.',
-      text:  `click the following link to verify your email : http://localhost:5173/user/verify-email/${user.verificationToken}`
+      text:  `click the following link to verify your email : ${BASE_URL}/user/verify-email/${user.verificationToken}`
     }
     await mailService.sendMail(mail);
   };
@@ -46,7 +47,7 @@ class UserService {
       from: process.env.HOST_EMAIL,
       to: user.email,
       subject: 'Reset your password!',
-      text: `http://localhost:5173/user/reset-email/${user.passwodResetToken}`
+      text: `${BASE_URL}/user/reset-email/${user.passwodResetToken}`
     };
     mailService.sendMail(mail);
   }

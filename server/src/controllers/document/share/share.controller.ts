@@ -9,6 +9,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const BASE_URL = process.env.HOST || "";
+
 class ShareController {
   public create = catchAsync(async(req: Request, res: Response) => {
     console.log("in share controller");
@@ -48,7 +50,7 @@ class ShareController {
       from: process.env.HOST_EMAIL,
       to: sharedUser.email,
       subject: `${req.user.email} shared a document with you.`,
-      text: `Click the following link to view and edit the document: http://localhost:5173/document/${id}`
+      text: `Click the following link to view and edit the document: ${BASE_URL}/document/${id}`
     };
     //call mail service to send email
     await mailService.sendMail(mail);
